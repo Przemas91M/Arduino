@@ -1,27 +1,27 @@
-/*-----( Import needed libraries )-----*/
+
 #include <SPI.h>
 #include <nRF24L01.h>
 #include <RF24.h>
 #include <Wire.h>
 #include <Adafruit_MotorShield.h>
 #include "utility/Adafruit_PWMServoDriver.h"
-/*-----( Declare Constants and Pin Numbers )-----*/
+
 #define CE_PIN   9
 #define CSN_PIN 10
 #define Swiatlo A0
-// Obiekt shielda
+
 Adafruit_MotorShield AFMS = Adafruit_MotorShield();
 Adafruit_DCMotor *KoloLewe = AFMS.getMotor(1);
 Adafruit_DCMotor *KoloPrawe = AFMS.getMotor(2);
-// NOTE: the "LL" at the end of the constant is "LongLong" type
-const uint64_t pipe = 0xE8E8F0F0E1LL; // Define the transmit pipe
-/*-----( Declare objects )-----*/
-RF24 radio(CE_PIN, CSN_PIN); // Create a Radio
-/*-----( Declare Variables )-----*/
-int joystick[6];  // 3 element array holding Joystick readings'
+
+const uint64_t pipe = 0xE8E8F0F0E1LL; 
+
+RF24 radio(CE_PIN, CSN_PIN); 
+
+int joystick[6];  
 int VLewy;
 int VPrawy;
-void setup()   /****** SETUP: RUNS ONCE ******/
+void setup()   
 {
   Serial.begin(9600);
   delay(20);
@@ -33,18 +33,18 @@ void setup()   /****** SETUP: RUNS ONCE ******/
   radio.openReadingPipe(1, pipe);
   radio.startListening();
   pinMode(5, OUTPUT);
-}//--(end setup )---
+}
 
 
-void loop()   /****** LOOP: RUNS CONSTANTLY ******/
+void loop()   
 {
   if ( radio.available() )
   {
-    // Read the data payload until we've received everything
+    
     bool done = false;
     while (!done)
     {
-      // Fetch the data payload
+      
       done = radio.read( joystick, sizeof(joystick) );
       Serial.print("X = ");
       Serial.print(joystick[0]);
@@ -183,7 +183,7 @@ void SkrPrawo()
 
 
 
-//*********( THE END )***********
+
 
 
 
