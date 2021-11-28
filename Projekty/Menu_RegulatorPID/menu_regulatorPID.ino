@@ -29,7 +29,7 @@ int D;
 6-czlon D
 */
 //funkcja wyswietlajaca temperature z pinu analogowego(homescreen)
-//enterem wchodzisz w menu
+//enterem wchodzimy do menu
 void podglad(){
   while(poziom == 0){
     klawisze();
@@ -45,13 +45,13 @@ void podglad(){
   }
 }
 //menu glowne - wybor ustawienia temperatury badz parametrow PID
-//enterem wracasz do podgladu
-//gora to wybor temperatury
-//dol to wybor czlonu PID
+//enterem wracamy do ekranu temperatury
+//klawisz UP uruchamia wybor temperatury
+//klawisz DOWN to wybor czlonu PID
 void menu(){
   while(poziom == 1){
     klawisze();
-    //przejdz do podgladu
+    //przechodzimy do podgladu (poziom 0)
     if(Enter == HIGH){
       poziom = 0;}
     //przejdz do ustawiania temperatury docelowej
@@ -68,8 +68,8 @@ void menu(){
   }
 }
 //menu ustawiania temperatury docelowej
-//gora/dol ustawiasz
-//enterem wychodzisz
+//UP/DOWN ustawiamy żądaną temperaturę
+//ENTER wychodzimy
 void temperatura(){
   while(poziom == 2){
     klawisze();
@@ -112,8 +112,8 @@ void PID(){
   }
 }
 //ustawianie wartosci czlonu P
-//klawiszem enter wychodzisz
-//gora/dol regulujesz
+//klawiszem enter wychodzimy
+//klawiszamy up/down ustawiamy parametr
 void czlonP(){
   while(poziom == 4){
   klawisze();
